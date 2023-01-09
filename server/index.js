@@ -11,7 +11,7 @@ app.use(express.json())
 const router = express.Router();
 app.use(router)
 
-router.get("/hello?", (req, res) => {
+router.get("/hello", (req, res) => {
     res.send({status: "Express on Vercel"});
 });
 
@@ -19,16 +19,21 @@ router.get("/hello?", (req, res) => {
 
 
 
-const path = require('path')
-const reactPath = path.resolve(__dirname, "..", "client", "public");
-app.use(express.static(reactPath));
+// const path = require('path')
+// const reactPath = path.resolve(__dirname, "..", "client", "public");
+// app.use(express.static(reactPath));
 
-// for all other routes, render index.html and let react router handle it
-app.get("*", (req, res) => {
-  res.sendFile(path.join(reactPath, "index.html"));
-});
+// // for all other routes, render index.html and let react router handle it
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(reactPath, "index.html"));
+// });
 
-
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static("build"));
+    app.get("*", (req, res) => {
+        res.sendFile(path.resolve(__dirname,  "build", "index.html"));
+    });
+}
 
 
 
