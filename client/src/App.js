@@ -58,7 +58,7 @@ function App() {
   const [example, setExample] = useState('')
 
   useEffect(() => {
-      get("/hello").then((r) => setExample(r));
+      get("/api/hello").then((r) => setExample(r));
       // const response = await fetch("/hi/");
       // console.log(response.clone().json());
 
