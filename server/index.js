@@ -18,7 +18,7 @@ router.get("/api/hello", (req, res) => {
 
 
 
-// const path = require('path')
+const path = require('path')
 // const reactPath = path.resolve(__dirname, "..", "client", "public");
 // app.use(express.static(reactPath));
 
@@ -34,6 +34,7 @@ if (process.env.NODE_ENV === "production") {
     });
 }
 
+app.use(express.static(path.resolve(__dirname, '../client/build')));
 
 
 // Initialize server
