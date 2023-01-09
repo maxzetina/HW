@@ -3,11 +3,16 @@ const app = express()
 const cors = require('cors')
 app.use(cors())
 app.use(express.json())
+
+// const path = require('path')
+// app.use('/static', express.static(path.join(__dirname, 'public')))
+
+
 const router = express.Router();
 app.use(router)
 
 router.get("/hello", (req, res) => {
-    res.send({f: "Express on Vercel"});
+    res.send({status: "Express on Vercel"});
   });
   
   // Initialize server
