@@ -8,9 +8,9 @@ app.use(express.json())
 
 
 const router = express.Router();
-app.use(router)
+app.use("/api", router)
 
-router.get("/api/hello", (req, res) => {
+router.get("/hello", (req, res) => {
     res.send({status: "Express on Vercel"});
 });
 
