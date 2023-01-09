@@ -11,7 +11,7 @@ app.use(express.json())
 const router = express.Router();
 app.use(router)
 
-router.post("/hello", (req, res) => {
+router.get("/hello", (req, res) => {
     res.send({status: "Express on Vercel"});
 });
 
@@ -30,7 +30,7 @@ router.post("/hello", (req, res) => {
 
 if (process.env.NODE_ENV === "production") {
     app.use(express.static("build"));
-    app.get("*", (req, res) => {
+    app.get("/*", (req, res) => {
         res.sendFile(path.resolve(__dirname,  "build", "index.html"));
     });
 }
