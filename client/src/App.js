@@ -55,11 +55,18 @@ function get(endpoint, params = {}) {
 function App() {
 
   const [example, setExample] = useState('')
+  const [emp, setEmp] = useState([])
 
   useEffect(() => {
       get("https://trying-maxzetina.vercel.app/api/hello").then((r) => {
         console.log(r);
         setExample(r)});
+      get("http://localhost:5000/api/emps", {name: 'Max'}).then((r) => {
+          console.log(r);
+          setEmp(r.map((r, key) => 
+        <p key={key}>{r.name}, {r.level}</p> 
+        ))
+      });
       // const response = await fetch("/hi/");
       // console.log(response.clone().json());
 
@@ -77,9 +84,10 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
+        <div>
           {example.status}
-        </p>
+          {emp}
+        </div>
         <a
           className="App-link"
           href="https://reactjs.org"
