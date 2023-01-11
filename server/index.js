@@ -7,19 +7,19 @@ require("dotenv").config();
 // const path = require('path')
 // app.use('/static', express.static(path.join(__dirname, 'public')))
 
-const mongoConnectionURL = process.env.MONGODB_URI;
-// TODO change database name to the name you chose
-const databaseName = "employees";
+// const mongoConnectionURL = process.env.MONGODB_URI;
+// // TODO change database name to the name you chose
+// const databaseName = "employees";
 
-// connect to mongodb
-mongoose
-  .connect(mongoConnectionURL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    dbName: databaseName,
-  })
-  .then(() => console.log("Connected to MongoDB"))
-  .catch((err) => console.log(`Error connecting to MongoDB: ${err}`));
+// // connect to mongodb
+// mongoose
+//   .connect(mongoConnectionURL, {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//     dbName: databaseName,
+//   })
+//   .then(() => console.log("Connected to MongoDB"))
+//   .catch((err) => console.log(`Error connecting to MongoDB: ${err}`));
 
 app.use(cors())
 app.use(express.json())
