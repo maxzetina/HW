@@ -11,15 +11,15 @@ require("dotenv").config();
 // // TODO change database name to the name you chose
 // const databaseName = "employees";
 
-// // connect to mongodb
-// mongoose
-//   .connect(mongoConnectionURL, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//     dbName: databaseName,
-//   })
-//   .then(() => console.log("Connected to MongoDB"))
-//   .catch((err) => console.log(`Error connecting to MongoDB: ${err}`));
+// connect to mongodb
+mongoose
+  .connect(mongoConnectionURL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    dbName: databaseName,
+  })
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((err) => console.log(`Error connecting to MongoDB: ${err}`));
 
 app.use(cors())
 app.use(express.json())
