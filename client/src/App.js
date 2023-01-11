@@ -61,7 +61,7 @@ function App() {
       get("https://trying-maxzetina.vercel.app/api/hello").then((r) => {
         console.log(r);
         setExample(r)});
-      get("http://localhost:5000/api/emps", {name: 'Max'}).then((r) => {
+      get("https://trying-maxzetina.vercel.app/api/emps", {name: 'Max'}).then((r) => {
           console.log(r);
           setEmp(r.map((r, key) => 
         <p key={key}>{r.name}, {r.level}</p> 
