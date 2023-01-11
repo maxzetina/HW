@@ -57,7 +57,7 @@ function App() {
   const [example, setExample] = useState('')
 
   useEffect(() => {
-      get("/api/hello").then((r) => {
+      get("https://trying-maxzetina.vercel.app/api/hello").then((r) => {
         console.log(r);
         setExample(r)});
       // const response = await fetch("/hi/");
