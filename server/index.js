@@ -7,7 +7,7 @@ require("dotenv").config();
 // const path = require('path')
 // app.use('/static', express.static(path.join(__dirname, 'public')))
 
-const mongoConnectionURL = process.env.ATLAS_SRV;
+const mongoConnectionURL = process.env.MONGODB_URI;
 // TODO change database name to the name you chose
 const databaseName = "employees";
 
