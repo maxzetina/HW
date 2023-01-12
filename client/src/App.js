@@ -3,6 +3,9 @@ import logo from './logo.svg';
 import './App.css';
 import { get } from './utilities';
 
+import { PrimaryButton } from '@fluentui/react';
+
+
 function App() {
 
   const [example, setExample] = useState('')
@@ -18,18 +21,11 @@ function App() {
         <p key={key}>{r.name}, {r.level}</p> 
         ))
       });
-      // const response = await fetch("/hi/");
-      // console.log(response.clone().json());
-
-      // if (!response.ok) {
-      //   const message = `An error occured: ${response.statusText}`;
-      //   window.alert(message);
-      //   return;
-      // }
-
-      // const records = await response.json();
-      // setRecords(records);
     }, []);
+
+    const _alertClicked = () => {
+      alert('Clicked');
+    };
 
   return (
     <div className="App">
@@ -47,6 +43,7 @@ function App() {
         >
           Learn React
         </a>
+        <PrimaryButton onClick={_alertClicked} text="Click Me"/>
       </header>
     </div>
   );
