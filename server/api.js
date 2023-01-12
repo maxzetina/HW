@@ -1,9 +1,8 @@
 const express = require('express')
+const router = express.Router();
 
 // import models so we can interact with the database
 const emp = require("./models/employee");
-
-const router = express.Router();
 
 
 router.get("/hello", (req, res) => {
