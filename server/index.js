@@ -10,6 +10,7 @@ require("dotenv").config();
 const mongoConnectionURL = process.env.MONGODB_URI;
 // // TODO change database name to the name you chose
 const databaseName = "employees";
+mongoose.set('strictQuery', true);
 
 // connect to mongodb
 mongoose
