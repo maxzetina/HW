@@ -13,7 +13,7 @@ const Sidenav = () => {
     return (
       <div style={{paddingLeft: 8}}>
         <div id="mySidenav" className="sidenav">
-          <a className="closebtn" onClick={closeNav}>&times;</a>        
+          <a className="closebtn" onClick={closeNav} style={{cursor: 'pointer'}}>&times;</a>        
           <a href="/">Home</a>
           <a href="/assignments">Assignments</a>
         </div>
