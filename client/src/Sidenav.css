@@ -37,21 +37,3 @@
     .sidenav a {font-size: 18px;}
 }
   
-
-
-
-
-
-
-
-
-
-.flex-container {
-    display: flex;
-  }
-  
-.flex-container > div {
-    /* margin: 10px; */
-    padding-left: 20px;
-    font-size: 20px;
-}

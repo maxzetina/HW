@@ -1,48 +1,28 @@
-import "../Sidenav.css";
+import "../Navbar.css";
+
+import NavbarLink from "./NavbarLink";
 import Sidenav from './Sidenav';
+import { Stack } from '@fluentui/react';
+import { useCallback } from "react";
 
 const Navbar = () => {
+    const links = [
+        {name: "Canvas", link: "https://canvas.mit.edu/"},
+        {name: "WebSIS", link: "http://websis.mit.edu/"},
+    ];
+
+    const displayLinks = useCallback(() => {
+       return links.map((x, key) => <NavbarLink key={key} name={x.name} link={x.link} />)
+    }, [links]);
+
     return (
-        <div>
-            <nav className="navbar navbar-dark bg-primary flex-container" style={{display:"flex", justifyContent: "left"}}>
+        <Stack>
+            <nav className="navbar navbar-dark flex-container" style={{display:"flex", justifyContent: "left", backgroundColor: "#0078d4"}}>
                 <Sidenav />
-                <div className="navbar-brand">HW</div>
-                <div className="navbar-nav ">
-               
-                <a className="nav-link" href="https://canvas.mit.edu/" target={"_blank"}>Canvas</a>
-        
-                </div>
-                <div className="navbar-nav"> <a className="nav-link" href="http://websis.mit.edu/" target={"_blank"}>WebSIS</a></div>
+                <Stack className="navbar-brand">HW</Stack>
+                {displayLinks()}
             </nav>
-        </div>
-
-//         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-
-//   <div >
-//     <ul class="navbar-nav">
-//       <li class="nav-item active">
-//         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-//       </li>
-//       <li class="nav-item">
-//         <a class="nav-link" href="#">Features</a>
-//       </li>
-//       <li class="nav-item">
-//         <a class="nav-link" href="#">Pricing</a>
-//       </li>
-//       <li class="nav-item dropdown">
-//         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-//           Dropdown link
-//         </a>
-//         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-//           <a class="dropdown-item" href="#">Action</a>
-//           <a class="dropdown-item" href="#">Another action</a>
-//           <a class="dropdown-item" href="#">Something else here</a>
-//         </div>
-//       </li>
-//     </ul>
-//   </div>
-// </nav>
-
+        </Stack>
     );
 }
 
