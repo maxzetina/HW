@@ -10,12 +10,7 @@ router.get("/hello", (req, res) => {
 });
 
 router.get("/classes", (req, res) => {
-    classes.find().then((x) => {
-        for (let i = 0; i < x.length; i++) {
-            console.log(x[i]);
-        }
-        res.send(x)
-    })
+    classes.find().then((x) => {res.send(x)})
 });
 
 
