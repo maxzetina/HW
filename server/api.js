@@ -2,17 +2,16 @@ const express = require('express')
 const router = express.Router();
 
 // import models so we can interact with the database
-const emp = require("./models/employee");
+const classes = require("./models/class");
 
 
 router.get("/hello", (req, res) => {
     res.send({status: "Express on Vercel"});
 });
 
-router.get("/emps", (req, res) => {
-    emp.find({name : req.query.name}).then((userFound) => {
-        console.log(userFound);
-        res.send(userFound)})
+router.get("/classes", (req, res) => {
+    classes.find().then((x) => {
+        res.send(x)})
 });
 
 

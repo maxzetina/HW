@@ -4,17 +4,17 @@ import { PrimaryButton, Stack } from '@fluentui/react';
 
 const Home = () => {
     const [example, setExample] = useState('')
-    const [emp, setEmp] = useState([])
+    const [classes, setClasses] = useState([])
   
     useEffect(() => {
         get("/api/hello").then((r) => {
         //   console.log(r);
           setExample(r)});
-        get("/api/emps", {name: 'Max'}).then((r) => {
-            // console.log(r);
-            setEmp(r.map((r, key) => <p key={key}>{r.name}, {r.level}</p>))
+        get("/api/classes").then((x) => {
+            console.log(x);
+            setClasses(x.map((x, key) => <p key={key}>{x.name}</p>))
         });
-    }, []);
+    }, [classes]);
 
     const _alertClicked = () => {
         alert('Clicked');
@@ -28,7 +28,7 @@ const Home = () => {
     return (
         <Stack tokens={verticalGapStackTokens}>
             {example.status}
-            {emp}
+            {classes}
 
             <br></br>
             <Stack.Item>
