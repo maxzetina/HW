@@ -12,7 +12,7 @@ app.use("/api", api)
 require("dotenv").config();
 
 const mongoConnectionURL = process.env.MONGODB_URI;
-const databaseName = "employees";
+const databaseName = "ToDoList";
 
 mongoose.set('strictQuery', true);
 mongoose.connect(mongoConnectionURL, {
