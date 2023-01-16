@@ -1,7 +1,8 @@
-import "../Sidenav.css";
+import "../css/Sidenav.css";
+import { Stack } from '@fluentui/react';
 
 const Sidenav = () => {
-
+    
     const openNav = () => {
       document.getElementById("mySidenav").style.width = "250px";
     }
@@ -11,17 +12,17 @@ const Sidenav = () => {
     }
 
     return (
-      <div style={{paddingLeft: 8}}>
-        <div id="mySidenav" className="sidenav">
+      <Stack style={{paddingLeft: 12}}> 
+        <Stack.Item className="navbar-toggler" style={{cursor: 'pointer'}} >
+          <span className="navbar-toggler-icon" onClick={openNav}></span>
+        </Stack.Item>
+
+        <Stack.Item id="mySidenav" className="sidenav">
           <a className="closebtn" onClick={closeNav} style={{cursor: 'pointer'}}>&times;</a>        
           <a href="/">Home</a>
           <a href="/assignments">Assignments</a>
-        </div>
-        {/* <span style={{fontSize: '30px', cursor: 'pointer'}} onClick={openNav}>&#9776;</span> */}
-        <div className="navbar-toggler" style={{cursor: 'pointer'}} >
-        <span className="navbar-toggler-icon" onClick={openNav}></span>
-        </div>
-      </div>
+        </Stack.Item>
+      </Stack>
     );
 };
 
