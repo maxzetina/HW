@@ -4,7 +4,7 @@
     e.g. get('/api/foo', { bar: 0 }).then(res => console.log(res))
 */
 
-// const BASE_URL = "https://trying-maxzetina.vercel.app";
+const BASE_URL = "https://trying-maxzetina.vercel.app";
 // const BASE_URL = "http://localhost:5000";
 
 

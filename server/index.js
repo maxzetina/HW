@@ -31,12 +31,6 @@ mongoose.connect(mongoConnectionURL, {
 //     });
 // }
 
-app.use(express.static('build'));
-app.get("/", (req, res) => {
-    res.sendFile("build/index.html");
-});
-
-
 // Initialize server
 app.listen(5000, () => {
     console.log("Server running on port 5000.");
