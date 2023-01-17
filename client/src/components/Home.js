@@ -20,7 +20,10 @@ const Home = () => {
     
     return (
         <Stack tokens={verticalGapStackTokens}>
-            <div className="container" style={{paddingTop: 16}}>
+            <div className='container' style={{paddingTop: 16}}>
+                <h1>Classes</h1>
+            </div>
+            <div className="container" style={{paddingTop: 8}}>
                 <div className="row row-cols-2 row-cols-md-2 g-4">
                     {classes}
                 </div>
