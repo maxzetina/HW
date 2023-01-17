@@ -30,9 +30,9 @@ mongoose.connect(mongoConnectionURL, {
 //         res.sendFile(path.resolve(__dirname,  "build", "index.html"));
 //     });
 // }
-app.use(express.static(path.resolve(__dirname, '../client/build')));
+app.use(express.static('build'));
 app.get("/", (req, res) => {
-    res.sendFile(path.resolve(__dirname,  "build", "index.html"));
+    res.sendFile("build/index.html");
 });
 
 
