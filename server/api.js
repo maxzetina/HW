@@ -4,16 +4,25 @@ const router = express.Router();
 // import models so we can interact with the database
 const classes = require("./models/class");
 
-
-router.get("/hello", (req, res) => {
-    res.send({status: "Express on Vercel"});
-});
-
 router.get("/classes", (req, res) => {
     classes.find().then((x) => {res.send(x)})
 });
 
+router.post("/addClass", (req, res) => {
+    console.log(req.body.name);
+    const newClass = new classes ({
+        name: req.body.name,
+        assignments: req.body.assignments,
+        lecturesRecorded: false,
+        lateDays: 20,
+        missableRecsLeft: 2,
+        psetDroppable: true,
+        psetDropped: true
+    });
+    
+    newClass.save().then(() => res.send({status: 'success'}))
 
+})
 
 
 
