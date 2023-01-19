@@ -1,4 +1,4 @@
-import "../css/Sidenav.css";
+import "../../css/Sidenav.css";
 import { Stack } from '@fluentui/react';
 
 const Sidenav = () => {

@@ -1,9 +1,9 @@
 import './App.css';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Assignments from './components/Assignments';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from './components/Home'
-import Navbar from './components/Navbar';
+import Navbar from './components/Nav/Navbar';
 import { Stack } from "@fluentui/react";
 
 function App() {

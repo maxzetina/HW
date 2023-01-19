@@ -1,4 +1,4 @@
-import "../css/Navbar.css";
+import "../../css/Navbar.css";
 
 import NavbarLink from "./NavbarLink";
 import Sidenav from './Sidenav';
