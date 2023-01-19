@@ -9,7 +9,7 @@ router.get("/classes", (req, res) => {
 });
 
 router.post("/addClass", (req, res) => {
-    console.log(req.body.name);
+    console.log(req);
     const newClass = new classes ({
         name: req.body.name,
         assignments: req.body.assignments,

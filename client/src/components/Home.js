@@ -1,5 +1,5 @@
 import ClassCard from './ClassCard';
-import { get } from '../utilities';
+import { get, post } from '../utilities';
 import { Stack } from '@fluentui/react';
 import { useState, useEffect } from "react";
 // import '../css/Class.css';
@@ -13,6 +13,10 @@ const Home = () => {
         });
     }, [classes]);
 
+    const addClass = () => {
+        post("/api/addClass", {name: 'ggg', 'assignments': []})
+    };
+
     const verticalGapStackTokens = {
         childrenGap: 10,
         padding: 10
@@ -20,6 +24,7 @@ const Home = () => {
     
     return (
         <Stack tokens={verticalGapStackTokens}>
+            <button onClick={addClass}>Add Class</button>
             <div className='container' style={{paddingTop: 16}}>
                 <h1>Classes</h1>
             </div>
