@@ -1,7 +1,8 @@
+import '../css/Class.css';
+
 import ClassCard from './ClassCard';
 import { get } from '../utilities';
 import { useEffect, useState } from "react";
-import '../css/Class.css';
 
 const Classes = () => {
     const [classes, setClasses] = useState([])

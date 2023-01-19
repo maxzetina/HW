@@ -1,6 +1,5 @@
 /* @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap"); */
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 /* .upper-half {
   border-top-left-radius: 25px;
@@ -32,9 +31,6 @@
 }
  */
 
-.title {
-  font-family: Roboto;
-}
 
 .flip-card {
   background-color: transparent;

@@ -8,5 +8,4 @@ const NavbarLink = (props) => {
     );
 }
 
-
 export default NavbarLink;
