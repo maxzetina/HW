@@ -9,7 +9,6 @@ router.get("/classes", (req, res) => {
 });
 
 router.post("/addClass", (req, res) => {
-    console.log(req);
     const newClass = new classes ({
         name: req.body.name,
         assignments: req.body.assignments,
@@ -21,8 +20,7 @@ router.post("/addClass", (req, res) => {
     });
     
     newClass.save().then(() => res.send({status: 'success'}))
-
-})
+});
 
 
 

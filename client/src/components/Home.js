@@ -1,21 +1,13 @@
-import ClassCard from './ClassCard';
-import { get, post } from '../utilities';
+import AddClassPanel from './AddClassPanel';
+import Classes from './Classes';
 import { Stack } from '@fluentui/react';
-import { useState, useEffect } from "react";
-// import '../css/Class.css';
+import '../css/Class.css';
+
 
 const Home = () => {
-    const [classes, setClasses] = useState([])
-  
-    useEffect(() => {
-        get("/api/classes").then((x) => {
-            setClasses(x.map((x, key) => <ClassCard key={key} name={x.name} assignments={x.assignments}/>))
-        });
-    }, [classes]);
-
-    const addClass = () => {
-        post("/api/addClass", {name: 'ggg', 'assignments': []})
-    };
+    // const addClass = () => {
+    //     post("/api/addClass", {name: 'ggg', 'assignments': []})
+    // };
 
     const verticalGapStackTokens = {
         childrenGap: 10,
@@ -24,15 +16,11 @@ const Home = () => {
     
     return (
         <Stack tokens={verticalGapStackTokens}>
-            <button onClick={addClass}>Add Class</button>
-            <div className='container' style={{paddingTop: 16}}>
-                <h1>Classes</h1>
+            <div className='container' style={{paddingTop: 16, display: 'flex', justifyContent: 'space-between'}}>
+                <h1 className='title'>Classes</h1>
+                <div style={{display: 'flex', alignItems:'center'}}><AddClassPanel/></div>
             </div>
-            <div className="container" style={{paddingTop: 8}}>
-                <div className="row row-cols-2 row-cols-md-2 g-4">
-                    {classes}
-                </div>
-            </div>
+            <Classes/>
        </Stack>
     );
 }
