@@ -12,11 +12,11 @@ router.post("/addClass", (req, res) => {
     const newClass = new classes ({
         name: req.body.name,
         assignments: req.body.assignments,
-        lecturesRecorded: false,
-        lateDays: 20,
-        missableRecsLeft: 2,
-        psetDroppable: true,
-        psetDropped: true
+        lecturesRecorded: req.body.lecturesRecorded,
+        lateDays: req.body.lateDays,
+        missableRecsLeft: req.body.missableRecsLeft,
+        psetDroppable: req.body.psetDroppable,
+        psetDropped: false
     });
     
     newClass.save().then(() => res.send({status: 'success'}))

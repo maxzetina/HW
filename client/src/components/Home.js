@@ -6,10 +6,6 @@ import { Stack } from '@fluentui/react';
 
 
 const Home = () => {
-    // const addClass = () => {
-    //     post("/api/addClass", {name: 'ggg', 'assignments': []})
-    // };
-
     const verticalGapStackTokens = {
         childrenGap: 10,
         padding: 10
