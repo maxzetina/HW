@@ -22,6 +22,10 @@ router.post("/addClass", (req, res) => {
     newClass.save().then(() => res.send({status: 'success'}))
 });
 
+router.post("/deleteClass", (req, res) => {
+    classes.findByIdAndDelete(req.body.id).then(() => res.send({}));
+});
+
 
 
 // anything else falls to this "not found" case

@@ -9,7 +9,7 @@ const verticalGapStackTokens = {
   padding: 10,
 };
 
-const AddClassPanel = (props) => {
+const EditClassPanel = (props) => {
   // const [isOpen, { setTrue: openPanel, setFalse: dismissPanel }] = useBoolean(false);
   const [name, setName] = useState('');
   const [lecturesRecorded, setLecturesRecorded] = useState(false);
@@ -116,4 +116,4 @@ const AddClassPanel = (props) => {
   );
 };
 
-export default AddClassPanel;
+export default EditClassPanel;
