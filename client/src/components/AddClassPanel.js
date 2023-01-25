@@ -1,6 +1,5 @@
 import { Checkbox, DefaultButton, Panel, PrimaryButton, Stack, TextField } from '@fluentui/react';
 import { post } from '../utilities.js';
-import { useBoolean } from '@fluentui/react-hooks';
 import { useState } from 'react';
 
 const buttonStyles = { root: { marginRight: 8 } };
@@ -25,7 +24,7 @@ const AddClassPanel = (props) => {
 
   const classNumber = (event) => {
     setName(event.target.value);
-  }
+  };
 
   const lecs = () => {
     setLecturesRecorded(!lecturesRecorded);
@@ -33,11 +32,11 @@ const AddClassPanel = (props) => {
 
   const logLateDays = (event) => {
     setLateDays(event.target.value);
-  }
+  };
   
   const logMissableRecs = (event) => {
     setMissableRecs(event.target.value);
-  }
+  };
 
   const dropPSET = () => {
     setPsetDroppable(!psetDroppable);
@@ -52,12 +51,11 @@ const AddClassPanel = (props) => {
     setPsetDroppable(false);
     
     props.dismissPanel();
-  }
+  };
 
   const addClass = () => {
     let newClass = {
       name: name,
-      assignments: [],
       lecturesRecorded: lecturesRecorded,
       lateDays: lateDays,
       missableRecsLeft: missableRecs,

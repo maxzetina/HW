@@ -1,21 +1,17 @@
 import '../css/Home.css';
 
 import AddClassPanel from './AddClassPanel';
-import EditClassPanel from './EditClassPanel';
-import DeleteClassPanel from './DeleteClassPanel.js';
-import DeleteClassDialog from './DeleteClassDialog';
 import Classes from './Classes';
 import { CommandBar, Stack } from '@fluentui/react';
-
-import { post } from '../utilities.js';
-
-
+// import DeleteClassPanel from './DeleteClassPanel.js';
+import DeleteClassDialog from './DeleteClassDialog';
+import EditClassPanel from './EditClassPanel';
 import { useBoolean } from '@fluentui/react-hooks';
 
 const Home = () => {
     const [addClassIsOpen, { setTrue: openAddClassPanel, setFalse: dismissAddClassPanel }] = useBoolean(false);
     const [editClassIsOpen, { setTrue: openEditClassPanel, setFalse: dismissEditClassPanel }] = useBoolean(false);
-    const [deleteClassIsOpen, { setTrue: openDeleteClassPanel, setFalse: dismissDeleteClassPanel }] = useBoolean(false);
+    // const [deleteClassIsOpen, { setTrue: openDeleteClassPanel, setFalse: dismissDeleteClassPanel }] = useBoolean(false);
     const [deleteClassHideDialog, { toggle: deleteClassToggleHideDialog }] = useBoolean(true);
 
     const verticalGapStackTokens = {
@@ -47,8 +43,6 @@ const Home = () => {
         { key: 'edit', text: 'Edit', onClick: () => openEditClassPanel(), iconProps: { iconName: 'Edit' } },
         // { key: 'delete', text: 'Delete', onClick: () => openDeleteClassPanel(), iconProps: { iconName: 'Delete' } },
         { key: 'delete', text: 'Delete', onClick: () => deleteClassToggleHideDialog(), iconProps: { iconName: 'Delete' } },
-
-
     ];
     
     return (
@@ -58,10 +52,12 @@ const Home = () => {
                 <CommandBar items={_items} />
                 {/* <Stack vertical verticalAlign='center'><AddClassPanel isOpen={isOpen} dismissPanel={dismissPanel}/></Stack> */}
             </Stack>
-            <AddClassPanel isOpen={addClassIsOpen} dismissPanel={dismissAddClassPanel}/>
-            <EditClassPanel isOpen={editClassIsOpen} dismissPanel={dismissEditClassPanel}/>
-            {/* <DeleteClassPanel isOpen={deleteClassIsOpen} dismissPanel={dismissDeleteClassPanel}/> */}
-            <DeleteClassDialog hideDialog={deleteClassHideDialog} toggleHideDialog={deleteClassToggleHideDialog}/>
+            <Stack>
+                <AddClassPanel isOpen={addClassIsOpen} dismissPanel={dismissAddClassPanel}/>
+                <EditClassPanel isOpen={editClassIsOpen} dismissPanel={dismissEditClassPanel}/>
+                {/* <DeleteClassPanel isOpen={deleteClassIsOpen} dismissPanel={dismissDeleteClassPanel}/> */}
+                <DeleteClassDialog hideDialog={deleteClassHideDialog} toggleHideDialog={deleteClassToggleHideDialog}/>
+            </Stack>
             <Classes/>
        </Stack>
     );

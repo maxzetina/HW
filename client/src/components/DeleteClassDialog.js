@@ -1,7 +1,7 @@
-import { DefaultButton, Dialog, DialogType, DialogFooter, Dropdown, PrimaryButton } from '@fluentui/react';
-
-import { get, post } from '../utilities.js';
-import { useEffect, useState } from 'react';
+import ClassDropdown from './ClassDropdown.js';
+import { DefaultButton, Dialog, DialogFooter, DialogType, PrimaryButton } from '@fluentui/react';
+import { post } from '../utilities.js';
+import { useState } from 'react';
 
 const modelProps = {
   isBlocking: true,
@@ -12,20 +12,20 @@ const dialogContentProps = {
   title: 'Delete Class',
 };
 
-const dropdownStyles = { dropdown: { width: 300 } };
+// const dropdownStyles = { dropdown: { width: 300 } };
 
 const DeleteClassDialog = (props) => {
-    const [classes, setClasses] = useState([])
+    // const [classes, setClasses] = useState([])
 
-    useEffect(() => {
-        get("/api/classes").then((x) => {
-            let options = []
-            for(let i = 0; i < x.length; i++){
-                options.push({key: x[i]._id, text: x[i].name})
-            }
-            setClasses(options)            
-        });
-    }, [classes]);
+    // useEffect(() => {
+    //     get("/api/classes").then((x) => {
+    //         let options = []
+    //         for(let i = 0; i < x.length; i++){
+    //             options.push({key: x[i]._id, text: x[i].name})
+    //         }
+    //         setClasses(options)            
+    //     });
+    // }, [classes]);
     
     const [selectedClass, setSelectedClass] = useState();
 
@@ -51,14 +51,16 @@ const DeleteClassDialog = (props) => {
                 dialogContentProps={dialogContentProps}
                 modalProps={modelProps}
             >
-                <Dropdown
+                {/* <Dropdown
                     label="Class"
                     selectedKey={selectedClass ? selectedClass.key : undefined}
                     onChange={onChange}
                     placeholder="Select a class"
                     options={classes}
                     styles={dropdownStyles}
-                />
+                /> */}
+                <ClassDropdown selectedClass={selectedClass} onChange={onChange} />
+
                 <DialogFooter>
                     <PrimaryButton onClick={deleteClass} text="Delete" />
                     <DefaultButton onClick={reset} text="Cancel" />
