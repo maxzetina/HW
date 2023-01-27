@@ -11,7 +11,7 @@ const ClassCard = (props) => {
 
     return (
         <div className="col flip-card">
-            <ReactCardFlip isFlipped={flip} containerClassName="card flip-card-inner" containerStyle={{border: "none", height: '60vh', width: '90vh'}}
+            <ReactCardFlip isFlipped={flip} containerClassName="card flip-card-inner" containerStyle={{border: "none", height: '60vh'}}
                 flipDirection="horizontal" flipSpeedBackToFront="1.5" flipSpeedFrontToBack="1.5">
                 <CardFront 
                     flipCard={flipCard} 
