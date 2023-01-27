@@ -1,5 +1,6 @@
 import '../css/Home.css';
 
+import AddAssignmentPanel from './AddAssignmentPanel';
 import AddClassPanel from './AddClassPanel';
 import Classes from './Classes';
 import { CommandBar, Stack } from '@fluentui/react';
@@ -13,6 +14,7 @@ const Home = () => {
     const [editClassIsOpen, { setTrue: openEditClassPanel, setFalse: dismissEditClassPanel }] = useBoolean(false);
     // const [deleteClassIsOpen, { setTrue: openDeleteClassPanel, setFalse: dismissDeleteClassPanel }] = useBoolean(false);
     const [deleteClassHideDialog, { toggle: deleteClassToggleHideDialog }] = useBoolean(true);
+    const [addAssignmentIsOpen, { setTrue: openAddAssignmentPanel, setFalse: dismissAddAssignmentPanel }] = useBoolean(false);
 
     const verticalGapStackTokens = {
         childrenGap: 10,
@@ -36,6 +38,7 @@ const Home = () => {
                 key: 'newAssignment',
                 text: 'Assignment',
                 iconProps: { iconName: 'WorkItem' },
+                onClick: () => openAddAssignmentPanel()
               },
             ],
           },
@@ -57,6 +60,7 @@ const Home = () => {
                 <EditClassPanel isOpen={editClassIsOpen} dismissPanel={dismissEditClassPanel}/>
                 {/* <DeleteClassPanel isOpen={deleteClassIsOpen} dismissPanel={dismissDeleteClassPanel}/> */}
                 <DeleteClassDialog hideDialog={deleteClassHideDialog} toggleHideDialog={deleteClassToggleHideDialog}/>
+                <AddAssignmentPanel isOpen={addAssignmentIsOpen} dismissPanel={dismissAddAssignmentPanel} />
             </Stack>
             <Classes/>
        </Stack>

@@ -25,11 +25,12 @@
   width: 70%;
 }
 
+*/
 .head {
   font-weight: 600;
   font-size: 16px
 }
- */
+
 
 
 .flip-card {
@@ -92,13 +93,16 @@
   /* transform: rotateY(180deg); */
 }
 
+.header {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  background-color: #549F93;
+  padding: 16px 16px;
+}
 
-
-
-
-
-
-
+h3 {
+  color: white
+}
 
 
 

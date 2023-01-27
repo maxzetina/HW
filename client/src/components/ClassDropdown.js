@@ -3,7 +3,7 @@ import { get } from '../utilities.js';
 import { useEffect, useState } from 'react';
 
 
-const dropdownStyles = { dropdown: { width: 300 } };
+const dropdownStyles = { dropdown: { width: 280 } };
 
 const ClassDropdown = (props) => {
     const [classes, setClasses] = useState([])

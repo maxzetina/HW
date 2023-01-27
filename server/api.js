@@ -39,6 +39,10 @@ router.post("/deleteClass", (req, res) => {
     classes.findByIdAndDelete(req.body.id).then(() => res.send({}));
 });
 
+router.post("/addAssignment", (req, res) => {
+    classes.findByIdAndUpdate(req.body.id, {$push: {assignments: req.body.assignment}}).then(() => res.send({}));
+})
+
 
 
 // anything else falls to this "not found" case

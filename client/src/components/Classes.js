@@ -12,14 +12,15 @@ const Classes = () => {
             setClasses(x.map((x, key) => 
                 <ClassCard 
                     key={key} 
-                    name={x.name} 
-                    assignments={x.assignments}
-                    lecturesRecorded={x.lecturesRecorded}
-                    lateDays={x.lateDays}
-                    missableRecsLeft={x.missableRecsLeft}
-                    psetDroppable={x.psetDroppable}
-                    psetDropped={x.psetDropped}
-                    />
+                    // name={x.name} 
+                    // assignments={x.assignments}
+                    // lecturesRecorded={x.lecturesRecorded}
+                    // lateDays={x.lateDays}
+                    // missableRecsLeft={x.missableRecsLeft}
+                    // psetDroppable={x.psetDroppable}
+                    // psetDropped={x.psetDropped}
+                    class={x}
+                />
             ));
             
             setLoading(false);
