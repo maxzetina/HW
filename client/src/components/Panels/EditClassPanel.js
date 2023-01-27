@@ -1,4 +1,4 @@
-import { Checkbox, DefaultButton, Panel, PrimaryButton, Stack, TextField } from '@fluentui/react';
+import { Checkbox, DefaultButton, Panel, PrimaryButton, SpinButton, Stack } from '@fluentui/react';
 import ClassDropdown from '../Classes/ClassDropdown.js';
 import { get, post } from '../../utilities.js';
 import { useState } from 'react';
@@ -8,21 +8,25 @@ const verticalGapStackTokens = {
   childrenGap: 20,
   padding: 10,
 };
-// const dropdownStyles = { dropdown: { width: 300 } };
+const upArrowButtonStyles = {
+  rootChecked: {
+    backgroundColor: 'green',
+  },
+  rootPressed: {
+    backgroundColor: 'green',
+  },
+};
+
+const downArrowButtonStyles = {
+  rootChecked: {
+    backgroundColor: 'red',
+  },
+  rootPressed: {
+    backgroundColor: 'red',
+  },
+};
 
 const EditClassPanel = (props) => {
-    // const [classes, setClasses] = useState([])
-
-    // useEffect(() => {
-    //     get("/api/classes").then((x) => {
-    //         let options = []
-    //         for(let i = 0; i < x.length; i++){
-    //             options.push({key: x[i]._id, text: x[i].name})
-    //         }
-    //         setClasses(options)            
-    //     });
-    // }, [classes]);
-
     const [selectedClass, setSelectedClass] = useState();
 
     const [lecturesRecorded, setLecturesRecorded] = useState(false);
@@ -51,12 +55,12 @@ const EditClassPanel = (props) => {
       setLecturesRecorded(!lecturesRecorded);
     };
 
-    const logLateDays = (event) => {
-      setLateDays(event.target.value);
+    const logLateDays = (event, value) => {
+      setLateDays(value);
     };
     
-    const logMissableRecs = (event) => {
-      setMissableRecs(event.target.value);
+    const logMissableRecs = (event, value) => {
+      setMissableRecs(value);
     };
 
     const dropPSET = () => {
@@ -110,35 +114,37 @@ const EditClassPanel = (props) => {
 
                 <hr></hr>
                 <Stack tokens={verticalGapStackTokens}>
-                    {/* <Dropdown
-                        label="Class"
-                        selectedKey={selectedClass ? selectedClass.key : undefined}
-                        onChange={onChange}
-                        placeholder="Select a class"
-                        options={classes}
-                        styles={dropdownStyles}
-                    /> */}
                     <ClassDropdown selectedClass={selectedClass} onChange={onChange} />
 
                     {selectedClass && 
                     <Stack tokens={verticalGapStackTokens}>
-                        <Stack horizontal horizontalAlign='space-evenly'>
-                            <TextField
-                              label="Late Days"
-                              value={lateDays}
-                              onChange={logLateDays}
-                              styles={{ fieldGroup: { width: 65 } }}
-                              style={{textAlign: 'center'}}
-                            />
-                            <TextField
-                              label="Missable Recs"
-                              value={missableRecs}
-                              onChange={logMissableRecs}
-                              styles={{ fieldGroup: { width: 90 } }}
-                              style={{textAlign: 'center'}}
-                            />
-                        </Stack>
-                        <br/>
+                        <SpinButton
+                          label="Late Days:"
+                          iconProps={{iconName: 'DateTime'}}
+                          value={lateDays}
+                          min={0}
+                          max={100}
+                          step={1}
+                          onChange={logLateDays}
+                          incrementButtonAriaLabel="Increase value by 1"
+                          decrementButtonAriaLabel="Decrease value by 1"
+                          styles={{ spinButtonWrapper: { width: 75 }}}
+                          upArrowButtonStyles={upArrowButtonStyles}
+                          downArrowButtonStyles={downArrowButtonStyles}
+                        />
+                        <SpinButton
+                          label="Missable Recs:"
+                          value={missableRecs}
+                          min={0}
+                          max={100}
+                          step={1}
+                          onChange={logMissableRecs}
+                          incrementButtonAriaLabel="Increase value by 1"
+                          decrementButtonAriaLabel="Decrease value by 1"
+                          styles={{ spinButtonWrapper: { width: 75 }}}
+                          upArrowButtonStyles={upArrowButtonStyles}
+                          downArrowButtonStyles={downArrowButtonStyles}
+                        />
                         <Checkbox label="Lectures Recorded:" onChange={lecs} boxSide='end' checked={lecturesRecorded} />
                         <Checkbox label="Can Drop PSET?" onChange={dropPSET} boxSide='end' checked={psetDroppable} />
                         {psetDroppable && <Checkbox label="Dropped PSET?" onChange={droppedPSET} boxSide='end' checked={psetDropped} />}

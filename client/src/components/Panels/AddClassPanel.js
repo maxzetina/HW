@@ -1,4 +1,4 @@
-import { Checkbox, DefaultButton, Panel, PrimaryButton, Stack, TextField } from '@fluentui/react';
+import { Checkbox, DefaultButton, Panel, PrimaryButton, SpinButton, Stack, TextField } from '@fluentui/react';
 import { post } from '../../utilities.js';
 import { useState } from 'react';
 
@@ -6,6 +6,23 @@ const buttonStyles = { root: { marginRight: 8 } };
 const verticalGapStackTokens = {
   childrenGap: 20,
   padding: 10,
+};
+const upArrowButtonStyles = {
+  rootChecked: {
+    backgroundColor: 'green',
+  },
+  rootPressed: {
+    backgroundColor: 'green',
+  },
+};
+
+const downArrowButtonStyles = {
+  rootChecked: {
+    backgroundColor: 'red',
+  },
+  rootPressed: {
+    backgroundColor: 'red',
+  },
 };
 
 const AddClassPanel = (props) => {
@@ -30,12 +47,12 @@ const AddClassPanel = (props) => {
     setLecturesRecorded(!lecturesRecorded);
   };
 
-  const logLateDays = (event) => {
-    setLateDays(event.target.value);
+  const logLateDays = (event, value) => {
+    setLateDays(value);
   };
   
-  const logMissableRecs = (event) => {
-    setMissableRecs(event.target.value);
+  const logMissableRecs = (event, value) => {
+    setMissableRecs(value);
   };
 
   const dropPSET = () => {
@@ -79,33 +96,33 @@ const AddClassPanel = (props) => {
           <hr></hr>
           <Stack tokens={verticalGapStackTokens}>
             <TextField label="Number" required value={name} onChange={classNumber} />
-            {/* <Checkbox label="Lectures Recorded:" onChange={lecs} boxSide='end' checked={lecturesRecorded} />
-            <Checkbox label="Can Drop PSET?" onChange={dropPSET} boxSide='end' checked={psetDroppable} /> */}
-            {/* <div>
-              <label>Late Days:&nbsp;</label>
-              <input type="number" style={{textAlign: 'center', width: '4em'}} value={lateDays} onChange={logLateDays}></input>
-            </div>
-            <div>
-              <label>Missable Recs:&nbsp;</label>
-              <input type="number" style={{textAlign: 'center', width: '4em'}} value={missableRecs} onChange={logMissableRecs}></input>
-            </div> */}
-            <Stack horizontal horizontalAlign='space-evenly'>
-              <TextField
-                label="Late Days"
-                value={lateDays}
-                onChange={logLateDays}
-                styles={{ fieldGroup: { width: 65 } }}
-                style={{textAlign: 'center'}}
-              />
-              <TextField
-                label="Missable Recs"
-                value={missableRecs}
-                onChange={logMissableRecs}
-                styles={{ fieldGroup: { width: 90 } }}
-                style={{textAlign: 'center'}}
-              />
-            </Stack>
-            <br/>
+            <SpinButton
+              label="Late Days:"
+              iconProps={{iconName: 'DateTime'}}
+              value={lateDays}
+              min={0}
+              max={100}
+              step={1}
+              onChange={logLateDays}
+              incrementButtonAriaLabel="Increase value by 1"
+              decrementButtonAriaLabel="Decrease value by 1"
+              styles={{ spinButtonWrapper: { width: 75 }}}
+              upArrowButtonStyles={upArrowButtonStyles}
+              downArrowButtonStyles={downArrowButtonStyles}
+            />
+            <SpinButton
+              label="Missable Recs:"
+              value={missableRecs}
+              min={0}
+              max={100}
+              step={1}
+              onChange={logMissableRecs}
+              incrementButtonAriaLabel="Increase value by 1"
+              decrementButtonAriaLabel="Decrease value by 1"
+              styles={{ spinButtonWrapper: { width: 75 }}}
+              upArrowButtonStyles={upArrowButtonStyles}
+              downArrowButtonStyles={downArrowButtonStyles}
+            />
             <Checkbox label="Lectures Recorded:" onChange={lecs} boxSide='end' checked={lecturesRecorded} />
             <Checkbox label="Can Drop PSET?" onChange={dropPSET} boxSide='end' checked={psetDroppable} />
           </Stack>
