@@ -1,11 +1,11 @@
 import ClassCard from './ClassCard';
-import { get } from '../utilities';
-import { useEffect, useState } from "react";
+import { get } from '../../utilities';
 import { Spinner, SpinnerSize, Stack} from "@fluentui/react";
+import { useEffect, useState } from "react";
 
 const Classes = () => {
     const [loading, setLoading] = useState(true);
-    const [classes, setClasses] = useState([])
+    const [classes, setClasses] = useState([]);
 
     useEffect(() => {
         get("/api/classes").then((x) => {

@@ -1,6 +1,6 @@
 import { Checkbox, DefaultButton, Panel, PrimaryButton, Stack, TextField, Dropdown } from '@fluentui/react';
 
-import { get, post } from '../utilities.js';
+import { get, post } from '../../utilities.js';
 import { useBoolean } from '@fluentui/react-hooks';
 import { useEffect, useState } from 'react';
 

@@ -1,4 +1,4 @@
-import '../css/Class.css';
+import '../../css/Class.css';
 import CardAssignments from './CardAssignments';
 import { IconButton, Stack } from '@fluentui/react';
 

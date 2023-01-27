@@ -1,5 +1,5 @@
 import { Checkbox, DefaultButton, Panel, PrimaryButton, Stack, TextField } from '@fluentui/react';
-import { post } from '../utilities.js';
+import { post } from '../../utilities.js';
 import { useState } from 'react';
 
 const buttonStyles = { root: { marginRight: 8 } };

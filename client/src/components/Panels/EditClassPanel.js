@@ -1,6 +1,6 @@
 import { Checkbox, DefaultButton, Panel, PrimaryButton, Stack, TextField } from '@fluentui/react';
-import ClassDropdown from './ClassDropdown.js';
-import { get, post } from '../utilities.js';
+import ClassDropdown from '../Classes/ClassDropdown.js';
+import { get, post } from '../../utilities.js';
 import { useState } from 'react';
 
 const buttonStyles = { root: { marginRight: 8 } };

@@ -1,6 +1,6 @@
-import ClassDropdown from './ClassDropdown.js';
+import ClassDropdown from '../Classes/ClassDropdown.js';
 import { DefaultButton, Dialog, DialogFooter, DialogType, PrimaryButton } from '@fluentui/react';
-import { post } from '../utilities.js';
+import { post } from '../../utilities.js';
 import { useState } from 'react';
 
 const modelProps = {

@@ -1,8 +1,8 @@
 import { Checkbox, DefaultButton, Panel, PrimaryButton, Stack, TextField, Dropdown, DatePicker, defaultDatePickerStrings, TimePicker } from '@fluentui/react';
 
-import { get, post } from '../utilities.js';
+import { get, post } from '../../utilities.js';
 import { useEffect, useState } from 'react';
-import ClassDropdown from './ClassDropdown.js';
+import ClassDropdown from '../Classes/ClassDropdown.js';
 
 const buttonStyles = { root: { marginRight: 8 } };
 const verticalGapStackTokens = {

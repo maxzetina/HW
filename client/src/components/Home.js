@@ -1,12 +1,12 @@
 import '../css/Home.css';
 
-import AddAssignmentPanel from './AddAssignmentPanel';
-import AddClassPanel from './AddClassPanel';
-import Classes from './Classes';
+import AddAssignmentPanel from './Panels/AddAssignmentPanel';
+import AddClassPanel from './Panels/AddClassPanel';
+import Classes from './Classes/Classes';
 import { CommandBar, Stack } from '@fluentui/react';
 // import DeleteClassPanel from './DeleteClassPanel.js';
-import DeleteClassDialog from './DeleteClassDialog';
-import EditClassPanel from './EditClassPanel';
+import DeleteClassDialog from './Panels/DeleteClassDialog';
+import EditClassPanel from './Panels/EditClassPanel';
 import { useBoolean } from '@fluentui/react-hooks';
 
 const Home = () => {

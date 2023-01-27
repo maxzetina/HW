@@ -1,4 +1,4 @@
-import '../css/Class.css';
+import '../../css/Class.css';
 
 import CardFront from './CardFront';
 import ReactCardFlip from "react-card-flip";
