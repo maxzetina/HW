@@ -17,8 +17,11 @@ const ClassCard = (props) => {
                     flipCard={flipCard} 
                     name={props.class.name} 
                     assignments={props.class.assignments}
+                    lecturesRecorded={props.class.lecturesRecorded}
                     lateDays={props.class.lateDays}
                     missableRecsLeft={props.class.missableRecsLeft}
+                    psetDroppable={props.class.psetDroppable}
+                    psetDropped={props.class.psetDropped}
                 />
                 
                 <CardBack flipCard={flipCard} OH={props.class.OH}/>
