@@ -7,7 +7,8 @@ const classSchema = new mongoose.Schema({
     lateDays: Number,
     missableRecsLeft: Number,
     psetDroppable: Boolean,
-    psetDropped: Boolean
+    psetDropped: Boolean,
+    OH: Array
 })
 // compile model from schema
 module.exports = mongoose.model("classes", classSchema);

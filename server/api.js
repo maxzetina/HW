@@ -20,7 +20,8 @@ router.post("/addClass", (req, res) => {
         lateDays: req.body.lateDays,
         missableRecsLeft: req.body.missableRecsLeft,
         psetDroppable: req.body.psetDroppable,
-        psetDropped: false
+        psetDropped: false,
+        OH: []
     });
     
     newClass.save().then(() => res.send({status: 'success'}))

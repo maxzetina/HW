@@ -3,6 +3,7 @@ import '../../css/Class.css';
 import CardFront from './CardFront';
 import ReactCardFlip from "react-card-flip";
 import { useState } from "react";
+import CardBack from './CardBack';
 
 const ClassCard = (props) => {
     const [flip, setFlip] = useState(false);
@@ -10,7 +11,7 @@ const ClassCard = (props) => {
 
     return (
         <div className="col flip-card">
-            <ReactCardFlip isFlipped={flip} containerClassName="card h-100 flip-card-inner" containerStyle={{border: "none"}}
+            <ReactCardFlip isFlipped={flip} containerClassName="card flip-card-inner" containerStyle={{border: "none"}}
                 flipDirection="horizontal" flipSpeedBackToFront="1.5" flipSpeedFrontToBack="1.5">
                 <CardFront 
                     flipCard={flipCard} 
@@ -20,11 +21,7 @@ const ClassCard = (props) => {
                     missableRecsLeft={props.class.missableRecsLeft}
                 />
                 
-                <div className='card-body flip-card-back' style={{borderRadius: "10px"}}>
-                    <h5 className="card-title">Back</h5>
-                        <p className="card-text">This is the back</p>
-                    <button onClick={() => setFlip(!flip)}>Flip</button>
-                </div>
+                <CardBack flipCard={flipCard} OH={props.class.OH}/>
             </ReactCardFlip>
         </div>
     );
@@ -61,6 +58,6 @@ export default ClassCard;
         <p>Missable Recs: {props.missableRecsLeft}</p>
     <button onClick={() => setFlip(!flip)}>
         Flip</button>
-</div> */}
+</div>
 
-        {/* <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p> */}
+<p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>  */}
