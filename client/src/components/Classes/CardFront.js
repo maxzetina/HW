@@ -12,7 +12,7 @@ const CardFront = (props) => {
       rootHovered: {color: '#549F93'}
     }
     return (
-        <div className='card flip-card-front' style={{borderRadius: "10px", border: "thick solid #549F93", height: '60vh'}}>
+        <div className='card flip-card-front' style={{borderRadius: "10px", border: "thick solid #549F93", height: '350px'}}>
             <Stack className='header' horizontal horizontalAlign='space-between' verticalAlign='center'>
                 <h3 className="card-title">{props.name}</h3>
                 <IconButton iconProps={{ iconName: 'PageRight' }} styles={iconButtonStyles} title="See OH" onClick={() => props.flipCard()} />
