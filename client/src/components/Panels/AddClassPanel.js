@@ -58,9 +58,13 @@ const AddClassPanel = (props) => {
   
   const onChangeWeekdays = (event, item) => {
     if (item) {
-      setSelectedOhDays(
-        item.selected ? [...selectedOhDays, item.key ] : selectedOhDays.filter(key => key !== item.key),
-      );
+      if(item.selected){
+        setSelectedOhDays([...selectedOhDays, item.key ])
+      }
+      else{
+        setSelectedOhDays(selectedOhDays.filter(key => key !== item.key))
+        setOhMap(new Map((ohMap.set(item.key, {time: '', room: ''}))))
+      }
     }
   };
 
