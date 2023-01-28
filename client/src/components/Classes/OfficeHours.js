@@ -1,11 +1,11 @@
-// import { Text } from '@fluentui/react';
 import { useEffect, useState } from 'react';
 
 const OfficeHours = (props) => {
     const [tableClass, setTableClass] = useState('table');
-
+    const [activeDays, setActiveDays] = useState([]);
     useEffect(() => {
-        if(props.OH.filter(obj => obj.time !== '').length > 5){
+        setActiveDays(props.OH.filter(obj => obj.time !== ''))
+        if(activeDays.length > 5){
             setTableClass('table table-sm');
         }
     }, [props.OH])
@@ -20,7 +20,7 @@ const OfficeHours = (props) => {
         );
     return (
         <div style={{paddingLeft: "8px", paddingRight: '8px'}}>
-            {props.OH.length > 0 ? 
+            {activeDays.length > 0 ? 
             <table className={tableClass} style={{color: 'white'}}>
                 <thead>
                     <tr>
