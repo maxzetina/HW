@@ -21,7 +21,7 @@ router.post("/addClass", (req, res) => {
         missableRecsLeft: req.body.missableRecsLeft,
         psetDroppable: req.body.psetDroppable,
         psetDropped: false,
-        OH: []
+        OH: req.body.OH
     });
     
     newClass.save().then(() => res.send({status: 'success'}))
@@ -33,7 +33,8 @@ router.post("/editClass", (req, res) => {
         lateDays: req.body.lateDays, 
         missableRecsLeft: req.body.missableRecsLeft,
         psetDroppable: req.body.psetDroppable,
-        psetDropped: req.body.psetDropped}).then(() => res.send({}));
+        psetDropped: req.body.psetDropped,
+        OH: req.body.OH}).then(() => res.send({}));
 });
 
 router.post("/deleteClass", (req, res) => {

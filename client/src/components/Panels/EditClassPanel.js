@@ -1,4 +1,4 @@
-import { Checkbox, DefaultButton, Panel, PrimaryButton, SpinButton, Stack } from '@fluentui/react';
+import { Checkbox, DefaultButton, Dropdown, Panel, PrimaryButton, SpinButton, Stack, TextField } from '@fluentui/react';
 import ClassDropdown from '../Classes/ClassDropdown.js';
 import { get, post } from '../../utilities.js';
 import { useState } from 'react';
@@ -26,6 +26,18 @@ const downArrowButtonStyles = {
   },
 };
 
+const dropdownStyles = { dropdown: { width: 280 } };
+
+const weekdays = [
+  { key: 'Sunday', text: 'Sunday' },
+  { key: 'Monday', text: 'Monday' },
+  { key: 'Tuesday', text: 'Tuesday' },
+  { key: 'Wednesday', text: 'Wednesday' },
+  { key: 'Thursday', text: 'Thursday' },
+  { key: 'Friday', text: 'Friday' },
+  { key: 'Saturday', text: 'Saturday' },
+];
+
 const EditClassPanel = (props) => {
     const [selectedClass, setSelectedClass] = useState();
 
@@ -34,6 +46,16 @@ const EditClassPanel = (props) => {
     const [missableRecs, setMissableRecs] = useState(0);
     const [psetDroppable, setPsetDroppable] = useState(false);
     const [psetDropped, setPsetDropped] = useState(false);
+    const [selectedOhDays, setSelectedOhDays] = useState([]);
+    const [ohMap, setOhMap] = useState(new Map([
+      ["Sunday", {time: '', room: ''}], 
+      ["Monday", {time: '', room: ''}], 
+      ["Tuesday", {time: '', room: ''}], 
+      ["Wednesday", {time: '', room: ''}], 
+      ["Thursday", {time: '', room: ''}], 
+      ["Friday", {time: '', room: ''}], 
+      ["Saturday", {time: '', room: ''}]
+    ]));
 
     const getClassData = (id) => {
       get("/api/getClass", {id: id}).then((course) => {
@@ -42,6 +64,25 @@ const EditClassPanel = (props) => {
         setMissableRecs(course.missableRecsLeft);
         setPsetDroppable(course.psetDroppable);
         setPsetDropped(course.psetDropped);
+        let dataOhMap = new Map([
+          ["Sunday", {time: '', room: ''}], 
+          ["Monday", {time: '', room: ''}], 
+          ["Tuesday", {time: '', room: ''}], 
+          ["Wednesday", {time: '', room: ''}], 
+          ["Thursday", {time: '', room: ''}], 
+          ["Friday", {time: '', room: ''}], 
+          ["Saturday", {time: '', room: ''}]
+        ]);
+        let selectedDays = [];
+        for (let i = 0; i < course.OH.length; i++) {
+          let current = course.OH[i];
+          if (current.time !== ''){
+            selectedDays.push(current.day)
+          } 
+          dataOhMap.set(current.day, {time: current.time, room: current.room})
+        };
+        setOhMap(dataOhMap);
+        setSelectedOhDays(selectedDays)
       });
     };
 
@@ -77,6 +118,14 @@ const EditClassPanel = (props) => {
         getClassData(item.key);
     };
 
+    const onChangeWeekdays = (event, item) => {
+      if (item) {
+        setSelectedOhDays(
+          item.selected ? [...selectedOhDays, item.key ] : selectedOhDays.filter(key => key !== item.key),
+        );
+      }
+    };
+
     const reset = () => {
       setSelectedClass(null);
       setLecturesRecorded(false);
@@ -85,18 +134,33 @@ const EditClassPanel = (props) => {
       setLecturesRecorded(false);
       setPsetDroppable(false);
       setPsetDropped(false);
+      setSelectedOhDays([])
+      setOhMap(new Map([
+        ["Sunday", {time: '', room: ''}], 
+        ["Monday", {time: '', room: ''}], 
+        ["Tuesday", {time: '', room: ''}], 
+        ["Wednesday", {time: '', room: ''}], 
+        ["Thursday", {time: '', room: ''}], 
+        ["Friday", {time: '', room: ''}], 
+        ["Saturday", {time: '', room: ''}]
+      ]));
 
       props.dismissPanel();
     };
 
     const editClass = () => {
+      let officeHours = []
+      for (let [key, value] of ohMap) {
+        officeHours.push({day: key, time: value.time, room: value.room})
+      }
       let updates = {
           id: selectedClass,
           lecturesRecorded: lecturesRecorded,
           lateDays: lateDays,
           missableRecsLeft: missableRecs,
           psetDroppable: psetDroppable,
-          psetDropped: psetDropped
+          psetDropped: psetDropped,
+          OH: officeHours
         }
         post("/api/editClass", updates);
         reset();
@@ -148,6 +212,33 @@ const EditClassPanel = (props) => {
                         <Checkbox label="Lectures Recorded:" onChange={lecs} boxSide='end' checked={lecturesRecorded} />
                         <Checkbox label="Can Drop PSET?" onChange={dropPSET} boxSide='end' checked={psetDroppable} />
                         {psetDroppable && <Checkbox label="Dropped PSET?" onChange={droppedPSET} boxSide='end' checked={psetDropped} />}
+                        <Dropdown
+                          placeholder="Select Days"
+                          label="OH Days"
+                          selectedKeys={selectedOhDays}
+                          onChange={onChangeWeekdays}
+                          multiSelect
+                          options={weekdays}
+                          styles={dropdownStyles}
+                        />
+                        {selectedOhDays.map((day, key) => 
+                            <Stack horizontal horizontalAlign='space-between' key={key}>
+                              <TextField
+                                label={`${day}: Time`}
+                                value={ohMap.get(day).time}
+                                onChange={(e, v) => setOhMap(new Map(ohMap.set(day, {time: v, room: ohMap.get(day).room})))}
+                                styles={{ fieldGroup: { width: 125 } }}
+                                placeholder="Ex. 7-10PM"
+                              />
+                              <TextField
+                                label='Room'
+                                value={ohMap.get(day).room}
+                                onChange={(e, v) => setOhMap(new Map(ohMap.set(day, {time: ohMap.get(day).time, room: v})))}
+                                styles={{ fieldGroup: { width: 125 } }}
+                                placeholder='Ex. 26-100'
+                              />
+                            </Stack>
+                        )}
                     </Stack>
                     }
                 </Stack>
