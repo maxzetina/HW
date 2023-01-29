@@ -1,8 +1,7 @@
 import { Checkbox, DefaultButton, Panel, PrimaryButton, Stack, TextField, DatePicker, defaultDatePickerStrings, TimePicker } from '@fluentui/react';
-
+import ClassDropdown from '../Classes/ClassDropdown.js';
 import { post } from '../../utilities.js';
 import { useState } from 'react';
-import ClassDropdown from '../Classes/ClassDropdown.js';
 
 const buttonStyles = { root: { marginRight: 8 } };
 const verticalGapStackTokens = {
@@ -41,7 +40,7 @@ const AddAssignmentPanel = (props) => {
     };
 
     const onChange = (event, item) => {
-        setSelectedClass(item.key);
+        setSelectedClass(item);
     };
 
     const reset = () => {
@@ -56,7 +55,7 @@ const AddAssignmentPanel = (props) => {
     const addAssignment = () => {
         const d = new Date(dueDate.getFullYear(), dueDate.getMonth(), dueDate.getDate(), dueTime.getHours(), dueTime.getMinutes())
         const newAssignment = {quiz: isQuiz, name: name, dueDate: d};
-        post("/api/addAssignment", {id: selectedClass, assignment: newAssignment});
+        post("/api/addAssignment", {id: selectedClass.key, assignment: newAssignment, className: selectedClass.text});
         reset();
     };
 

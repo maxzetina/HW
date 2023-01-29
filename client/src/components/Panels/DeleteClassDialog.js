@@ -12,25 +12,11 @@ const dialogContentProps = {
   title: 'Delete Class',
 };
 
-// const dropdownStyles = { dropdown: { width: 300 } };
-
 const DeleteClassDialog = (props) => {
-    // const [classes, setClasses] = useState([])
-
-    // useEffect(() => {
-    //     get("/api/classes").then((x) => {
-    //         let options = []
-    //         for(let i = 0; i < x.length; i++){
-    //             options.push({key: x[i]._id, text: x[i].name})
-    //         }
-    //         setClasses(options)            
-    //     });
-    // }, [classes]);
-    
     const [selectedClass, setSelectedClass] = useState();
 
     const onChange = (event, item) => {
-        setSelectedClass(item.key);
+        setSelectedClass(item);
     };
 
     const reset = () => {
@@ -39,7 +25,8 @@ const DeleteClassDialog = (props) => {
     };
 
     const deleteClass = () => {
-        post("/api/deleteClass", {id: selectedClass});
+        post("/api/deleteClass", {id: selectedClass.key});
+        post("/api/deleteClassAssignments", {className: selectedClass.text})
         reset();
     };
 
@@ -51,14 +38,6 @@ const DeleteClassDialog = (props) => {
                 dialogContentProps={dialogContentProps}
                 modalProps={modelProps}
             >
-                {/* <Dropdown
-                    label="Class"
-                    selectedKey={selectedClass ? selectedClass.key : undefined}
-                    onChange={onChange}
-                    placeholder="Select a class"
-                    options={classes}
-                    styles={dropdownStyles}
-                /> */}
                 <ClassDropdown selectedClass={selectedClass} onChange={onChange} />
 
                 <DialogFooter>

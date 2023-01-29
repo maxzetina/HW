@@ -3,6 +3,7 @@ const router = express.Router();
 
 // import models so we can interact with the database
 const classes = require("./models/class");
+const assignments = require("./models/assignment");
 
 router.get("/classes", (req, res) => {
     classes.find().then((x) => {res.send(x)})
@@ -42,9 +43,32 @@ router.post("/deleteClass", (req, res) => {
 });
 
 router.post("/addAssignment", (req, res) => {
-    classes.findByIdAndUpdate(req.body.id, {$push: {assignments: req.body.assignment}}).then(() => res.send({}));
-})
+    classes.findByIdAndUpdate(req.body.id, {$push: {assignments: req.body.assignment}}).then(() => {
+        const newAssignment = new assignments ({
+            quiz: req.body.assignment.quiz,
+            name: req.body.assignment.name,
+            dueDate: req.body.assignment.dueDate,
+            class: req.body.className,
+        });
+        newAssignment.save().then(() => res.send({}))
+    });
+});
 
+router.get("/assignments", (req, res) => {
+    assignments.find().then((x) => {res.send(x)})
+});
+
+router.post("/deleteClassAssignments", (req, res) => {
+    assignments.deleteMany({class: req.body.className}).then(() => res.send({}));
+});
+
+router.post("/deleteAssignments", (req, res) => {
+    assignments.deleteMany({_id: {$in: req.body.assignmentIDs}}).then(() => res.send({}))
+});
+
+router.post("/deleteAssignmentsFromClasses", (req, res) => {
+    classes.findOneAndUpdate({name: req.body.className}, {$pull: {assignments: req.body.assignment}}).then(() => res.send({}))
+});
 
 
 // anything else falls to this "not found" case
