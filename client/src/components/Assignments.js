@@ -3,8 +3,8 @@ import '../css/Home.css';
 import AddAssignmentPanel from './Panels/AddAssignmentPanel';
 import AssignmentsList from './AssignmentsList.js';
 import { CommandBar, Stack } from '@fluentui/react'; 
+import { useState } from 'react';
 import { useBoolean } from '@fluentui/react-hooks';
-
 
 const verticalGapStackTokens = {
     childrenGap: 10,
@@ -14,6 +14,7 @@ const verticalGapStackTokens = {
 const Assignments = () => {
     const [deleteMode, { setTrue: activateDeleteMode, setFalse: disableDeleteMode }] = useBoolean(false);
     const [addAssignmentIsOpen, { setTrue: openAddAssignmentPanel, setFalse: dismissAddAssignmentPanel }] = useBoolean(false);
+    const [assignmentsSorted, setAssignmentsSorted] = useState(false);
 
     const _items = [
         {
@@ -22,6 +23,7 @@ const Assignments = () => {
           iconProps: { iconName: 'Add' },
           onClick: () => openAddAssignmentPanel()
         },
+        { key: 'sort', text: 'Sort', onClick: () => setAssignmentsSorted(!assignmentsSorted), iconProps: { iconName: 'SortLines' } },
         { key: 'delete', text: 'Delete', onClick: () => activateDeleteMode(), iconProps: { iconName: 'Delete' } },
     ];
 
@@ -35,7 +37,7 @@ const Assignments = () => {
                 <AddAssignmentPanel isOpen={addAssignmentIsOpen} dismissPanel={dismissAddAssignmentPanel} />
             </Stack>
             <Stack className='container'>
-                <AssignmentsList deleteMode={deleteMode} disableDeleteMode={disableDeleteMode} />
+                <AssignmentsList deleteMode={deleteMode} disableDeleteMode={disableDeleteMode} isSorted={assignmentsSorted} />
             </Stack>
         </Stack>
     )

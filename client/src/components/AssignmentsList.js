@@ -41,13 +41,6 @@ const classNames = mergeStyleSets({
     color: palette.neutralTertiary,
     marginBottom: 10,
   },
-  chevron: {
-    alignSelf: 'center',
-    marginLeft: 10,
-    color: palette.neutralTertiary,
-    fontSize: fonts.large.fontSize,
-    flexShrink: 0,
-  },
 });
 
 
@@ -57,9 +50,14 @@ const AssignmentsList = (props) => {
 
     useEffect(() => {
         get("/api/assignments").then((x) => {
-            setAssignments(x)
+            if(props.isSorted){
+                setAssignments(x.slice().sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate)))
+            }
+            else{
+                setAssignments(x);
+            }
         });
-    }, [assignments]);
+    }, [props.isSorted, assignments]);
 
     const reset = () => {
         setCheckedMap(new Map());

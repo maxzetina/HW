@@ -1,4 +1,4 @@
-import { Checkbox, DefaultButton, Panel, PrimaryButton, SpinButton, Stack, TextField, DropdownMenuItemType, Dropdown } from '@fluentui/react';
+import { Checkbox, DefaultButton, Dropdown, Panel, PrimaryButton, SpinButton, Stack, TextField } from '@fluentui/react';
 import { post } from '../../utilities.js';
 import { useState } from 'react';
 
