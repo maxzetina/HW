@@ -1,4 +1,4 @@
-import { Check, DefaultButton, List, PrimaryButton, Stack } from '@fluentui/react';
+import { Check, DefaultButton, List, PrimaryButton, Spinner, SpinnerSize, Stack } from '@fluentui/react';
 import { get, post } from '../utilities';
 import { getFocusStyle, getTheme, mergeStyleSets } from '@fluentui/react/lib/Styling';
 import { useEffect, useState } from "react";
@@ -45,6 +45,7 @@ const classNames = mergeStyleSets({
 
 
 const AssignmentsList = (props) => {
+    const [loading, setLoading] = useState(true);
     const [assignments, setAssignments] = useState([]);
     const [checkedMap, setCheckedMap] = useState(new Map())
 
@@ -56,6 +57,7 @@ const AssignmentsList = (props) => {
             else{
                 setAssignments(x);
             }
+            setLoading(false);
         });
     }, [props.isSorted, assignments]);
 
@@ -78,7 +80,9 @@ const AssignmentsList = (props) => {
         for(let i = 0; i < assignmentsToDelete.length; i++){
             let current = assignmentsToDelete[i];
             let assignment = {quiz: current.quiz, name: current.name, dueDate: current.dueDate} 
-            post("/api/deleteAssignmentsFromClasses", {className: current.class, assignment: assignment})
+            if(current.class !== 'Extra'){
+                post("/api/deleteAssignmentsFromClasses", {className: current.class, assignment: assignment})
+            }
         }
         reset();
     }
@@ -86,7 +90,11 @@ const AssignmentsList = (props) => {
     const onRenderCell = (x, index) => {
         let pad = "0px";
         if(props.deleteMode){pad = "16px"};
-        const options = {weekday: 'short', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric'};
+
+        let opt = {weekday: 'short', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric'};
+        if(!(new Date(x.dueDate).getHours())){
+            opt = {weekday: 'short', month: 'numeric', day: 'numeric'};
+        };
 
         let textColor = 'black';
         if(x.quiz){textColor = '#2b579a'}
@@ -98,7 +106,7 @@ const AssignmentsList = (props) => {
                         <Stack horizontal horizontalAlign='space-between' className={classNames.itemName}>
                             <div style={{color: textColor}}>{x.name}</div>
                             <div style={{color: 'red', fontWeight: "bold"}}>
-                                {new Date(x.dueDate).toLocaleString("en-US", options)}
+                                {new Date(x.dueDate).toLocaleString("en-US", opt)}
                             </div>
                         </Stack>
                         <div className={classNames.itemIndex}>{x.class}</div>
@@ -109,18 +117,22 @@ const AssignmentsList = (props) => {
     };
 
     return (
-        <div> 
-            <List items={assignments} onRenderCell={onRenderCell}></List>
-            <br/>
-            {props.deleteMode && 
-                <div style={{display: "flex", justifyContent: 'right'}}>
-                    <div style={{paddingRight: "8px"}}>
-                        <PrimaryButton text="Save" onClick={deleteAssignments}/> 
-                    </div>
-                    <div>
-                        <DefaultButton text="Cancel" onClick={reset} /> 
-                    </div>
-                </div>
+        <div>
+            {loading ? <Spinner label="Loading Assignments..." size={SpinnerSize.large} /> :
+                <Stack>
+                    <List items={assignments} onRenderCell={onRenderCell}></List>
+                    <br/>
+                    {props.deleteMode && 
+                        <div style={{display: "flex", justifyContent: 'right'}}>
+                            <div style={{paddingRight: "8px"}}>
+                                <PrimaryButton text="Save" onClick={deleteAssignments}/> 
+                            </div>
+                            <div>
+                                <DefaultButton text="Cancel" onClick={reset} /> 
+                            </div>
+                        </div>
+                    }
+                </Stack>
             }
         </div>
     );

@@ -70,6 +70,19 @@ router.post("/deleteAssignmentsFromClasses", (req, res) => {
     classes.findOneAndUpdate({name: req.body.className}, {$pull: {assignments: req.body.assignment}}).then(() => res.send({}))
 });
 
+router.get("/extras", (req, res) => {
+    assignments.find({class: req.query.className}).then((x) => {res.send(x)});
+});
+
+router.post("/addExtra", (req, res) => {
+    const newAssignment = new assignments ({
+        quiz: req.body.quiz,
+        name: req.body.name,
+        dueDate: req.body.dueDate,
+        class: req.body.className,
+    });
+    newAssignment.save().then(() => res.send({}))
+});
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
