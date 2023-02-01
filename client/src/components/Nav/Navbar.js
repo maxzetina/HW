@@ -8,6 +8,7 @@ const Navbar = () => {
     const links = [
         {name: "Canvas", link: "https://canvas.mit.edu/"},
         {name: "WebSIS", link: "http://websis.mit.edu/"},
+        {name: "ATLAS", link: "https://atlas.mit.edu/atlas/Home.action"}
     ];
 
     return (
