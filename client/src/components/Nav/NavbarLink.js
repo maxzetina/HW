@@ -1,9 +1,10 @@
+import { Nav } from 'react-bootstrap';
 import { Stack } from '@fluentui/react';
 
 const NavbarLink = (props) => {
     return (            
         <Stack className="navbar-nav">
-            <a className="nav-link" href={props.link} target={"_blank"}>{props.name}</a>
+            <Nav.Link className="nav-link" href={props.link} target={"_blank"} style={{fontSize: 20}}>{props.name}</Nav.Link>
         </Stack>
     );
 }
