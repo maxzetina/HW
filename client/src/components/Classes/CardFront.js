@@ -86,7 +86,7 @@ const CardFront = (props) => {
                 <div className='row'>
                     <div className='col'></div>
                     <div className='col'>
-                    <Stack horizontal horizontalAlign='left' style={{position: 'absolute', top: '200px', left: '100', borderLeft: "thick solid #549F93", borderTop: "thick solid #549F93", height: '155px', width: '260px', padding: '8px 0px 0px 8px'}}>
+                    <Stack horizontal horizontalAlign='left' style={{position: 'absolute', top: '33vh', left: '46vh', borderLeft: "thick solid #549F93", borderTop: "thick solid #549F93", height: '26vh', width: '44vh', padding: '8px 0px 0px 8px'}}>
                         Notes:
                     </Stack>
                     </div>
