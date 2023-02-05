@@ -12,8 +12,8 @@ const Sidenav = () => {
     }
 
     return (
-      <Stack style={{paddingLeft: 16, paddingRight: 32}}> 
-        <span className="navbar-toggler-icon" onClick={openNav} style={{cursor: 'pointer'}}></span>
+      <Stack style={{paddingLeft: 16, paddingRight: 24}}> 
+        <span className="navbar-toggler-icon" onClick={openNav} style={{cursor: 'pointer', fontSize: 20}}></span>
 
         <Stack.Item id="mySidenav" className="sidenav">
           <a className="closebtn" onClick={closeNav} style={{cursor: 'pointer'}}>&times;</a>        

@@ -32,7 +32,7 @@ const Navbar_ = () => {
                 </NavDropdown>
             </nav> */}
                 
-                <Navbar variant='dark' style={{height: 70, backgroundColor: "#0078d4"}}>
+                <Navbar variant='dark' style={{height: 62, backgroundColor: "#0078d4"}}>
                     <Sidenav />
                     <Navbar.Brand>HW</Navbar.Brand>
                     <Nav className="me-auto">
