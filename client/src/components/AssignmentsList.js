@@ -87,6 +87,7 @@ const AssignmentsList = (props) => {
         reset();
     }
 
+
     const onRenderCell = (x, index) => {
         let pad = "0px";
         if(props.deleteMode){pad = "16px"};
@@ -95,12 +96,21 @@ const AssignmentsList = (props) => {
         if(!(new Date(x.dueDate).getHours())){
             opt = {weekday: 'short', month: 'numeric', day: 'numeric'};
         };
+        const editMap = () => {
+            if (checkedMap.get(x._id)){
+                checkedMap.delete(x._id);
+                setCheckedMap(new Map(checkedMap))
+            }
+            else {
+                setCheckedMap(new Map(checkedMap.set(x._id, [x, true])))
+            }
+        };
 
         let textColor = 'black';
         if(x.quiz){textColor = '#2b579a'}
         return (
             <Stack horizontal verticalAlign="center" className={classNames.itemCell} data-is-focusable={true}>
-                {props.deleteMode && <div onClick={() => setCheckedMap(new Map(checkedMap.set(x._id, [x, !checkedMap.get(x._id)])))}><Check checked={checkedMap.get(x._id)}/> </div>}
+                {props.deleteMode && <div onClick={editMap}><Check checked={checkedMap.get(x._id)}/> </div>}
                 <Stack className={classNames.itemContent}>
                     <div style={{paddingLeft: pad}}>
                         <Stack horizontal horizontalAlign='space-between' className={classNames.itemName}>
