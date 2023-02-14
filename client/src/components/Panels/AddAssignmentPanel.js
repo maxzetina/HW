@@ -89,7 +89,7 @@ const AddAssignmentPanel = (props) => {
                             />
                             <TimePicker
                                 styles={timePickerStyles}
-                                useHour12
+                                // useHour12
                                 allowFreeform
                                 autoComplete="on"
                                 label={'Due at:'}
