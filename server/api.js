@@ -5,6 +5,30 @@ const router = express.Router();
 const classes = require("./models/class");
 const assignments = require("./models/assignment");
 
+
+const mysql = require("mysql");
+
+const con = mysql.createConnection({
+  host: "sql.mit.edu",
+  user: "la_casa",
+  password: "la_casa-webmaster",
+  database: "la_casa+site"
+});
+
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected to La Casa!");
+});
+router.get("/chores", (req,res) => {
+    con.query("SELECT * FROM chores", function (err, result, fields) {
+        if (err) throw err;
+        res.send(result);
+      });
+})
+
+
+
+
 router.get("/classes", (req, res) => {
     classes.find().then((x) => {res.send(x)})
 });
