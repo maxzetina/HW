@@ -8,17 +8,17 @@ const assignments = require("./models/assignment");
 
 const mysql = require("mysql");
 
-const con = mysql.createConnection({
+const con = mysql.createPool({
   host: "sql.mit.edu",
   user: "la_casa",
   password: "la_casa-webmaster",
   database: "la_casa+site"
 });
 
-con.connect(function(err) {
-  if (err) throw err;
-  console.log("Connected to La Casa!");
-});
+// con.connect(function(err) {
+//   if (err) throw err;
+//   console.log("Connected to La Casa!");
+// });
 
 router.post("/saves", (req,res) => {
     // console.log(`'${req.body.name}'`);
