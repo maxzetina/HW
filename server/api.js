@@ -6,32 +6,6 @@ const classes = require("./models/class");
 const assignments = require("./models/assignment");
 
 
-const mysql = require("mysql");
-
-const con = mysql.createPool({
-  host: "sql.mit.edu",
-  user: "la_casa",
-  password: "la_casa-webmaster",
-  database: "la_casa+site"
-});
-
-// con.connect(function(err) {
-//   if (err) throw err;
-//   console.log("Connected to La Casa!");
-// });
-
-router.post("/saves", (req,res) => {
-    // console.log(`'${req.body.name}'`);
-    // res.send({})
-    con.query(`INSERT INTO saves (name, day, request) VALUES ('${req.body.name}', '${req.body.day}', '${req.body.request}')`, function (err, result) {
-        if (err) throw err;
-        res.send(result);
-      });
-})
-
-
-
-
 router.get("/classes", (req, res) => {
     classes.find().then((x) => {res.send(x)})
 });
