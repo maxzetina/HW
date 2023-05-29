@@ -19,8 +19,11 @@ con.connect(function(err) {
   if (err) throw err;
   console.log("Connected to La Casa!");
 });
-router.get("/chores", (req,res) => {
-    con.query("SELECT * FROM chores", function (err, result, fields) {
+
+router.post("/saves", (req,res) => {
+    // console.log(`'${req.body.name}'`);
+    // res.send({})
+    con.query(`INSERT INTO saves (name, day, request) VALUES ('${req.body.name}', '${req.body.day}', '${req.body.request}')`, function (err, result) {
         if (err) throw err;
         res.send(result);
       });
@@ -38,6 +41,7 @@ router.get("/getClass", (req, res) => {
 });
 
 router.post("/addClass", (req, res) => {
+    console.log(req)
     const newClass = new classes ({
         name: req.body.name,
         assignments: [],
@@ -99,6 +103,7 @@ router.get("/extras", (req, res) => {
 });
 
 router.post("/addExtra", (req, res) => {
+    console.log(req)
     const newAssignment = new assignments ({
         quiz: req.body.quiz,
         name: req.body.name,
