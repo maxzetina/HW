@@ -6,6 +6,9 @@ import Home from './components/Home'
 import Navbar from './components/Nav/Navbar';
 import { Stack } from "@fluentui/react";
 
+import { initializeIcons } from '@fluentui/font-icons-mdl2';
+initializeIcons();
+
 function App() {
   return (
     <Stack>
